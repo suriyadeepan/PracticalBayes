@@ -1,4 +1,5 @@
 import arviz as az
+import numpy as np
 import tensorflow as tf
 import tensorflow_probability as tfp
 
@@ -20,7 +21,8 @@ def evaluate(tensors, sess=None):
 def infer(joint_log_prob, data, variables, initial_chain_state,
           nsteps=2000, burn_in_ratio=0.5,
           step_size=0.1, num_leapfrog_steps=3,
-          bijectors={}):
+          bijectors={}, exclude_burn_in=True,
+          return_raw=False):
     
   # create closure of joint_log_prob function
   def log_posterior(*args):
@@ -65,9 +67,23 @@ def infer(joint_log_prob, data, variables, initial_chain_state,
   
   # evaluate posterior
   post_vars = evaluate([ post_var for post_var in posterior ])
+
+  # exclude burn_in samples
+  if exclude_burn_in:
+    post_vars = [ v[num_burnin_steps:] for v in post_vars ]
+
+  # return samples in raw form
+  if return_raw:
+    return post_vars
   
   # convert to arviz.InferenceData
-  inference_dict = { var_name : var_trace for var_name, var_trace in zip(variables, post_vars) }
+  inference_dict = { var_name : np.expand_dims(var_trace, axis=0)
+      for var_name, var_trace in zip(variables, post_vars) }
   inference_data = az.from_dict(inference_dict)
   
   return inference_data
+
+
+def az_to_numpy(azdata):
+  keys = azdata.posterior.all()
+  return [ azdata.posterior[key].data for key in keys ]
