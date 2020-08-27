@@ -1,5 +1,10 @@
 import arviz as az
 import numpy as np
+
+from colors import colors
+from random import choice
+import matplotlib.pyplot as plt
+
 import tensorflow as tf
 import tensorflow_probability as tfp
 
@@ -84,6 +89,43 @@ def infer(joint_log_prob, data, variables, initial_chain_state,
   return inference_data
 
 
-def az_to_numpy(azdata):
+def az_to_numpy(azdata, flatten=False):
   keys = azdata.posterior.all()
-  return [ azdata.posterior[key].data for key in keys ]
+  if not flatten:
+    return [ azdata.posterior[key].data for key in keys ]
+  else:
+    return [ azdata.posterior[key].data.flatten() for key in keys ]
+
+
+def az_to_dict(azdata):
+  return { k : azdata.posterior[k].data for k in azdata.posterior.all() }
+
+
+def plot_posterior_hist(trace, var_name):
+  # convert to dictionary of samples
+  samples = trace.posterior[var_name].data
+  # check dimensionality of variable
+  if len(samples.shape) == 2:
+    samples = np.expand_dims(samples, axis=-1)
+  # get dims
+  dims = samples.shape[-1]
+
+  for i in range(dims):
+    # set figure size
+    fig = plt.figure(figsize=(12.5, 5))
+    # set title
+    # plot hist
+    plt.hist(samples[:, :, i].flatten(), histtype='stepfilled', bins=50,
+        alpha=0.65, label="posterior of {}_{}".format(var_name, i),
+        color=choice(colors), density=True)
+    # set x label
+    plt.xlabel("{}_{} value".format(var_name, i))
+    plt.yticks([])
+    # set legend
+    plt.legend(loc="upper left")
+    # set y limits
+    # plt.ylim([0., 1.])
+    # set y label
+    # plt.ylabel("probability");
+  plt.title("Posterior distribution")
+  plt.show()
