@@ -1,5 +1,6 @@
 import arviz as az
 import numpy as np
+from tqdm import tqdm
 
 from colors import colors
 from random import choice
@@ -27,7 +28,7 @@ def infer(joint_log_prob, data, variables, initial_chain_state,
           nsteps=2000, burn_in_ratio=0.5,
           step_size=0.1, num_leapfrog_steps=3,
           bijectors={}, exclude_burn_in=True,
-          return_raw=False):
+          return_raw=False, tqdm_steps=10):
     
   # create closure of joint_log_prob function
   def log_posterior(*args):
@@ -65,11 +66,12 @@ def infer(joint_log_prob, data, variables, initial_chain_state,
       for t, var_name in zip(initial_chain_state, variables) ]
     
   # sample from chain
-  posterior = graph_sample_chain(num_results=nsteps,
-                                 num_burnin_steps=num_burnin_steps,
-                                 current_state=initial_chain_state,
-                                 kernel = kernel, trace_fn=None)
-  
+  posterior = run_inference_in_steps(sample_fn=graph_sample_chain,
+                                     nsteps=nsteps,
+                                     burn_in_ratio=burn_in_ratio,
+                                     initial_state=initial_chain_state,
+                                     variables=variables,
+                                     kernel=kernel, isteps=tqdm_steps)
   # evaluate posterior
   post_vars = evaluate([ post_var for post_var in posterior ])
 
@@ -87,6 +89,35 @@ def infer(joint_log_prob, data, variables, initial_chain_state,
   inference_data = az.from_dict(inference_dict)
   
   return inference_data
+
+
+def run_inference_in_steps(sample_fn, kernel, nsteps, burn_in_ratio,
+    initial_state, variables, isteps=10):
+  # calculate steps
+  msteps = nsteps // 10
+  mburn_in_steps = int(msteps * burn_in_ratio)
+  # create metakernel
+  meta_kernel = tfp.mcmc.SimpleStepSizeAdaptation(inner_kernel=kernel,
+                     num_adaptation_steps=int(mburn_in_steps * 0.8))
+  # set chain state
+  chain_state = initial_state
+  # posterior samples
+  posterior = [ [] for _ in variables ]
+  # sample in steps
+  for i in tqdm(range(isteps)):
+    samples = sample_fn(num_results=msteps,
+                        num_burnin_steps=mburn_in_steps,
+                        current_state=chain_state,
+                        kernel=meta_kernel, trace_fn=None)
+    # set chain state
+    chain_state = [
+      tf.constant(samples[j][-1], name='init_{}_{}'.format(var_name, i+1))
+      for j, var_name in enumerate(variables) ]
+    # add samples to posterior
+    for j in range(len(variables)):
+      posterior[j].extend(samples[j])
+
+  return posterior
 
 
 def az_to_numpy(azdata, flatten=False):
