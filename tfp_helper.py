@@ -2,15 +2,19 @@ import arviz as az
 import numpy as np
 from tqdm import tqdm
 
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 from colors import colors
 from random import choice
-import matplotlib.pyplot as plt
 
 import tensorflow as tf
 import tensorflow_probability as tfp
 
 tfd = tfp.distributions
 tfb = tfp.bijectors
+
+# set color cycle
+mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=colors)
 
 
 def evaluate(tensors, sess=None):
@@ -158,5 +162,4 @@ def plot_posterior_hist(trace, var_name):
     # plt.ylim([0., 1.])
     # set y label
     # plt.ylabel("probability");
-  plt.title("Posterior distribution")
   plt.show()
