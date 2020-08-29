@@ -1,2 +1,6 @@
-# practical-bayes-tfp
-Bayesian Thinking with Tensorflow Probability
+# Practical Bayes with Tensorflow Probability
+
+- A Gentle Introduction to TFP
+- Bayesian Switch Point Analysis
+- Bayesian A/B Testing
+- Bayesian Unsupervised Clustering
