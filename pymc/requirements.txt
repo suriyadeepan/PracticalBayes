@@ -1,9 +1,6 @@
 # plotting
 matplotlib
 arviz
-# tfp
-tensorflow
-tensorflow_probability
 # progress bar
 tqdm
 # pymc
