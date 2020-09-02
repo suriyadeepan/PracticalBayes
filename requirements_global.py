@@ -9,3 +9,5 @@ tqdm
 # pymc
 pymc3
 numpy
+# tests
+pytest
