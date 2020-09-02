@@ -1,4 +1,6 @@
-# Practical Bayes with Tensorflow Probability
+# Practical Bayes
+
+
 
 - A Gentle Introduction to TFP
 - Bayesian Switch Point Analysis
