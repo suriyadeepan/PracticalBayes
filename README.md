@@ -16,6 +16,12 @@ Are you interested in learning more about the following topics?
 
 So am I. Follow this repository for more updates!
 
+## Table of Contents
+
+- **Bayesian Thinking with Tensorflow Probability** [@tfug_chennai](https://twitter.com/TFUGChennai/status/1295763421149855744?s=20)
+  - [Notebooks](tfp/)
+  - [Google Slides](https://drive.google.com/file/d/1I4BHlQZBo49pGy77LH3Xc_b2Hg41k7e7/view?usp=sharing)
+
 ## Getting Started
 
 Instructions on getting the repo setup and running on your local machine.
