@@ -1,8 +1,20 @@
+![](https://img.shields.io/badge/pymc-3.9.3-green) ![](https://img.shields.io/badge/tensorflow_probability-0.11.0-yellow) ![](https://img.shields.io/badge/license-GNU%20GPL%20v3.0-blue)
+
 # Practical Bayes
 
 
 
-This repository reflects my current state of knowledge of Bayesian Inference. It contains notes, notebooks, and tools from my talks, workshops, and readings since January 2018. Are you interested in learning more about Probabilistic programming, Bayesian Data Analysis, and how to think like a Bayesian? So am I! Follow this repository for more updates.
+This repository reflects my current state of knowledge of Bayesian Inference.
+It contains notes, notebooks, and tools from my talks, workshops, and readings since January 2018.
+
+Are you interested in learning more about the following topics?
+
+- Probabilistic programming
+- Bayesian Data Analysis
+- How to think like a Bayesian
+- Applications of Bayesian Inference
+
+So am I. Follow this repository for more updates!
 
 ## Getting Started
 
@@ -47,6 +59,7 @@ pytest pymc/tests.py
 - Examples from Cameron Davidson-Pilon's Book [Bayesian Methods for Hackers](https://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/)
 - Data borrowed from Robert R.F. DeFilippi's blog on [Bayesian Analysis of Traffic Patterns](https://medium.com/@rrfd/bayesian-analysis-for-traffic-patterns-480e71a680ab)
 - Covid-19 Bayesian Forecast plot borrowed from [Inferring change points in the spread of COVID-19 reveals the effectiveness of interventions](https://science.sciencemag.org/content/369/6500/eabb9789)
+- Template for slides borrowed from Junpen Lao's [A Hitchhiker's Guide to designing a Bayesian library in Python](https://docs.google.com/presentation/d/1xgNRJDwkWjTHOYMj5aGefwWiV8x-Tz55GfkBksZsN3g/edit?usp=sharing)
 
 ## License
 
