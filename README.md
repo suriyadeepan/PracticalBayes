@@ -24,7 +24,7 @@ So am I. Follow this repository for more updates!
 |      |                                                              |                                                              | [Slides](https://drive.google.com/file/d/1I4BHlQZBo49pGy77LH3Xc_b2Hg41k7e7/view?usp=sharing) |
 | 2    | `tfp_helper`: Helper Library for prototyping with Tensorflow Probability | Inference Button                                             | [Code](https://github.com/suriyadeepan/tfp_helper)           |
 |      |                                                              | `arviz` adapter for Plotting                                 |                                                              |
-|      |                                                              | Smart Progress Bar ▓▓▓▓▓▓▓▓▓▓░░░░░ 67%                   |                                                              |
+|      |                                                              | Smart Progress Bar ▓▓▓▓▓▓▓▓▓▓░░░░░                   |                                                              |
 
 
 
