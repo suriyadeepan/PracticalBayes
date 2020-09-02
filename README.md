@@ -2,7 +2,7 @@
 
 
 
-
+This repository reflects my current state of knowledge of Bayesian Inference. It contains notes, notebooks, and tools from my talks, workshops, and readings since January 2018. Are you interested in learning more about Probabilistic programming, Bayesian Data Analysis, and how to think like a Bayesian? So am I! Follow this repository for more updates.
 
 ## Getting Started
 
