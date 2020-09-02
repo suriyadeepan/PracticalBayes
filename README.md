@@ -18,13 +18,13 @@ So am I. Follow this repository for more updates!
 
 ## Table of Contents
 
-- **Bayesian Thinking with Tensorflow Probability** [@tfug_chennai](https://twitter.com/TFUGChennai/status/1295763421149855744?s=20)
+- Bayesian Thinking with Tensorflow Probability [@tfug_chennai](https://twitter.com/TFUGChennai/status/1295763421149855744?s=20)
   - [Notebooks](tfp/)
   - [Google Slides](https://drive.google.com/file/d/1I4BHlQZBo49pGy77LH3Xc_b2Hg41k7e7/view?usp=sharing)
 - [`tfp_helper`](https://github.com/suriyadeepan/tfp_helper): Helper library for prototyping with Tensorflow Probability
-  - **Inference Button**
-  - `arviz` adapter for **Plotting**
-  - Smart **Progress Bar** for tracking inference status
+  - Inference Button
+  - `arviz` adapter for Plotting
+  - Smart Progress Bar ▓▓▓▓▓▓▓▓▓▓░░░░░ 67%
 
 ## Getting Started
 
